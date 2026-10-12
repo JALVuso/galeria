@@ -1,0 +1,24 @@
+<section class="galeria">
+  <h1>Galería de fotos</h1>
+  <p class="subtitulo">Pulsa una foto para verla en grande</p>
+
+  <!-- Cuadrícula responsive generada desde el array (no desde el HTML) -->
+  <div class="cuadricula">
+    @for (foto of imagenes; track foto.id) {
+      <app-galeria-item [imagen]="foto" (seleccionada)="ampliada.set($event)" />
+    }
+  </div>
+</section>
+
+<!-- Visor ampliado: solo existe cuando hay una foto seleccionada -->
+@if (ampliada(); as foto) {
+  <div class="fondo" (click)="cerrar()">
+    <figure class="visor" (click)="$event.stopPropagation()">
+      <img [src]="foto.src" [alt]="foto.titulo" />
+      <figcaption>
+        {{ foto.titulo }}
+        <button type="button" class="cerrar" (click)="cerrar()" aria-label="Cerrar">✕</button>
+      </figcaption>
+    </figure>
+  </div>
+}

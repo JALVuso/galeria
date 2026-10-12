@@ -1,0 +1,4 @@
+<button type="button" class="tarjeta" (click)="seleccionada.emit(imagen())">
+  <img [src]="imagen().src" [alt]="imagen().titulo" loading="lazy" />
+  <span class="titulo">{{ imagen().titulo }}</span>
+</button>
